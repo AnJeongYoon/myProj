@@ -1,0 +1,120 @@
+@CHARSET "UTF-8";
+/* 회원관리----------------------------------------------------------------- */
+.ad_mem_sub{
+	height: 100%;
+	overflow: hidden;
+}
+.ad_mem_sub_title{
+	display: inline-block;
+	
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+	padding-right: 5px;
+}
+.ad_mem_mod_input{
+	width: 100% !important;
+	display: table-column;
+}
+.ad_mem_check{
+	display: inline-block;
+}
+td, th{
+	line-height: 2 !important;	
+}
+.numeric1{width:3%;}
+.numeric2{width:20%;}
+.numeric3{width:5%;}
+.numeric4{width:5%;}
+.numeric5{width:5%;}
+.numeric6{width:4%;}
+.numeric7{width:4%;}
+.numeric8{width:5%;}
+.numeric9{width:7%;}
+.numeric10{width:4%;}
+.numeric11{width:3%;}
+.numeric12{width:2%; text-align: center;}
+.numeric13{width:4%;}
+.numeric14{width:5%;}
+.numeric15{width:3%;}
+.ad_mem_select{
+	height: 24px;
+}
+.ad_mem_page_div{
+	margin: 10px 0;
+	height: 43px;
+}
+.ad_mem_page_select{
+	height: 100%;
+	border-radius:4px;
+	/* font-size: 1.2em; */
+}
+.point_page_a{	
+	padding : 10px;
+	display: block;
+	color:#444 !important;
+}
+.point_page_a:HOVER{
+	background: #A8AEB3;
+	color:#fff !important;
+}
+.point_page_span{
+	background: #fff;
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.point_page_li:HOVER{
+	background: #A8AEB3;
+	color:#fff !important;
+}
+.point_page_li{
+	list-style: none;
+	float: left;
+	font-size: 15px;
+	height :100%;
+	overflow : hidden;
+	border: 1px solid #ececec;
+	background: #f9f9f9;
+	box-sizing : border-box;
+	display: inline-block;
+	
+}
+.point_page_li:FIRST-CHILD{
+	border-radius: 4px 0 0 4px !important;
+}
+.point_page_li:last-CHILD{
+	border-radius:0 4px 4px 0 !important;
+}
+.point_page_ul{
+	margin-top: 10px;
+	padding: 0 !important;
+}
+.ad_mem_del_btn{
+	height: 43px;
+}
+.sort{
+	padding-right: 5px;
+	cursor: pointer;
+}
+#search_select{
+	height: 34px;
+	color: #555;    
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* 회원관리----------------------------------------------------------------- */
+/*��ǰ ��� ������*/
+    .sale{display:inline; width:6%; border-radius:15px;}
+    .imgfile{width: 23%;}
+    .info{ border-radius:20px;}
+
+	.cate {width:17%; border-radius:12px;}
+    .reg{width:150px; height:100%; overflow:hidden; float:right; padding-top:30px;}
+    .reg1{float:left;}
+    .reg2{float:right;}
+   
