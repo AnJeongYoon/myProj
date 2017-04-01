@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:p="http://www.springframework.org/schema/p"
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- Dispatcher서블릿 클래스가 클라이언트 요청을 미리 받고 
+	아래의 컨트롤러 클래스들 중 하나가 자동으로 맵핑되어 아래 컨트롤러 클래스가 실행되게 선언 -->
+	
+	<!-- 요청정보를 전달받아 응답결과를 생성하는 Controller클래스 선언 -->
+	<!-- 인터넷주소창에 hello.do라는 요청이 들어오면 HelloController클래스를 실행되게 선언 -->
+	<bean id="hello" name="/hello.do" class="controller.HelloController"></bean>
+	
+	<!-- index.do라는 요청이 들어오면 ShoppingController클래스를 실행되게 선언 -->
+	<bean id="index" name="/index.do" class="controller.ShoppingController"></bean>
+	
+	<!-- Top.jsp에서 수작업 공구메뉴를 클릭하여 sujak.do라는 요청이 들어오면 ShoppingController클래스를 실행되게 선언 -->
+	<bean id="sujak" name="/sujak.do" class="controller.ShoppingController" p:shoppingDao-ref="shoppingDao"></bean>
+	<!-- p:dataSource-ref="shoppingDao"뜻: id="shoppingDao"인 <bean>객체에 있는 model.ShoppingDAO클래스를 참조(의존)하여 사용하겠다는 뜻 -->
+	
+	
+	<!-- SujakCenter.jsp에서 이미지 하나를 눌러 상세보기 요청이 들어오면... ShoppingController클래스를 실행되게 선언 -->
+	<bean id="suinfo" name="/suinfo.do" class="controller.ShoppingController" p:shoppingDao-ref="shoppingDao"></bean>
+	
+	
+	<!-- SuJakInfo.jsp페이지(수작업공구구매페이지)에서 카트담기 버튼을 눌러서 카트담기(sutoolcart.do) 호출이 들어왔을 때 ShoppingController클래스를 실행되게 선언 -->
+	<bean id="sutoolcart" name="/sutoolcart.do" class="controller.ShoppingController" p:shoppingDao-ref="shoppingDao"></bean>
+	
+	
+	<!-- SuCartResult.jsp페이지(카트내역 확인 페이지)에서 "카트삭제"버튼을 눌러서 카트에 있는 상품을 삭제하는 요청 -->
+	<bean id="sucartdel" name="/sucartdel.do" class="controller.ShoppingController" p:shoppingDao-ref="shoppingDao"></bean>
+	
+	
+	<!-- Top.jsp페이지에서 "회원가입" 버튼을 눌러서 회원가입 페이지로 이동하는 요청! joinform.do 호출이 들어왔을 때 ShoppingController클래스가 실행되게 선언 -->
+	<bean id="joinform" name="/joinform.do" class="controller.ShoppingController" p:shoppingDao-ref="shoppingDao"></bean>
+	
+	
+	<!-- joinform.jsp페이지에서 회원가입 내용을 작성후 "회원가입" 버튼을 눌렀을 때 joinproc.do 호출이 들어왔을 때 ShoppingController클래스를 실행되게 선언 -->
+	<bean id="joinproc" name="/joinproc.do" class="controller.ShoppingController" p:shoppingDao-ref="shoppingDao"></bean>
+	
+	
+	<!-- Controller로 부터 응답결과를 보여줄 jsp호출하는 방법에 대한 객체 생성 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<!-- jsp에서 jstl을사용하기 위해 설정 -->
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		
+		<!-- .jsp페이지로 가기 전에 한글처리 -->
+		<property name="contentType" value="text/html; charset=euc-kr"></property>
+		
+		<!-- jsp파일을 호출할 때, 확장자명 .jsp를 붙여서 호출하기 -->
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- 오라클 데이터베이스 사용(연결)하는 클래스 등록 -->
+	<bean id="shoppingDao" class="model.ShoppingDAO" p:dataSource-ref="dataSource" />
+	<!-- p:dataSource-ref="dataSource"는 아래의 id="dataSource"인 <bean>객체를 참조(의존하여)쓰겠다는 뜻  -->
+	<!-- 
+		전체설명: 오라클 데이터베이스 연결정보가 저장되어 있는 아래의  <bean id="dataSource">객체의 DriverManagerDataSource클래스를 
+		model.ShoppingDAO클래스가 new ShoppingDAO(); 객체를 생성하지 않고 바로 사용하기 위해 
+		아래의 id="dataSource"인 <bean>객체를 참조(의존하여)쓰겠다고 등록 한 것
+	-->
+	
+	<!-- 데이터베이스 설정하기(오라클용 데이터베이스) -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<!-- DrivetManagerDataSource(커넥션풀)클래스에 xml형태로 멤버변수들에 각각 db연결정보를 저장 -->
+		<property name="driverClassName">
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+		
+		<property name="url">
+			<value>jdbc:oracle:thin:@192.168.6.200:1521:XE</value>
+		</property>
+		
+		<property name="username">
+			<value>system</value>
+		</property>
+		
+		<property name="password">
+			<value>1234</value>
+		</property>
+	</bean>
+</beans>
