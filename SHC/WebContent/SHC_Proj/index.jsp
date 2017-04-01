@@ -31,7 +31,7 @@
 <body id="home" class="homepage">
 
     <header id="header">
-		<%  %>
+		<%@ include file="common/navi/navi.jsp" %>
     </header><!--/header-->
 
     <section id="main-slider">
